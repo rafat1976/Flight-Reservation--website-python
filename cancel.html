@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cancel Ticket - SkyLink</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* Modern Premium Gradient Background */
+            background: linear-gradient(135deg, #1a2a6c 0%, #2a5298 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .cancel-container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            width: 400px;
+            text-align: center;
+        }
+        .icon {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #1a2a6c;
+            margin: 0 0 10px 0;
+            font-size: 26px;
+        }
+        p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        .input-group {
+            text-align: left;
+            margin-bottom: 25px;
+        }
+        label {
+            font-weight: 600;
+            font-size: 13px;
+            color: #555;
+            display: block;
+            margin-bottom: 8px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
+        input[type="text"]:focus {
+            border-color: #e74c3c;
+            box-shadow: 0 0 8px rgba(231, 76, 60, 0.2);
+        }
+        .btn-cancel {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-cancel:hover {
+            background: #c0392b;
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+            transform: translateY(-2px);
+        }
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #555;
+            font-weight: 600;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        .back-link:hover {
+            color: #1a2a6c;
+        }
+    </style>
+</head>
+<body>
+    <div class="cancel-container">
+        <div class="icon">✈️🚫</div>
+        <h2>Cancel Ticket</h2>
+        <p>Need to cancel your trip? Enter your ticket number below to proceed.</p>
+        
+        <form action="/cancel_ticket" method="POST">
+            <div class="input-group">
+                <label>Ticket Number</label>
+                <input type="text" name="ticket_no" placeholder="e.g. TKT12345" required>
+            </div>
+            <button type="submit" class="btn-cancel">Confirm Cancellation</button>
+        </form>
+        
+        <a href="/" class="back-link">← Back to Home</a>
+    </div>
+</body>
+</html>

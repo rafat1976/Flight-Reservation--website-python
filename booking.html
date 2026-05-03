@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>E-Ticket - SkyLink</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background: #e0eaf5; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0; 
+        }
+        .ticket-card { 
+            background: white; 
+            padding: 40px; 
+            border-radius: 15px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+            width: 450px; 
+            text-align: center; 
+            border-top: 10px solid #2ecc71; 
+        }
+        .success-icon { font-size: 55px; margin-bottom: 10px; }
+        h2 { color: #1a2a6c; margin: 0 0 5px 0; font-size: 26px;}
+        p.success-msg { color: #7f8c8d; margin-bottom: 30px; font-size: 15px; }
+        
+        .ticket-details { 
+            background: #f9f9f9; 
+            padding: 25px; 
+            border-radius: 10px; 
+            border: 2px dashed #ccc; 
+            text-align: left; 
+            margin-bottom: 30px; 
+            position: relative;
+        }
+        .detail-row { display: flex; justify-content: space-between; margin-bottom: 20px; }
+        .detail-row:last-child { margin-bottom: 0; }
+        .detail-label { color: #7f8c8d; font-size: 12px; font-weight: 600; text-transform: uppercase; margin-bottom: 5px;}
+        .detail-value { color: #2c3e50; font-size: 18px; font-weight: bold; }
+        
+        .buttons { display: flex; justify-content: space-between; gap: 15px; }
+        .btn-print { 
+            background: #34495e; color: white; padding: 12px; border-radius: 8px; 
+            font-weight: bold; cursor: pointer; border: none; font-size: 15px; flex: 1; transition: 0.3s;
+        }
+        .btn-print:hover { background: #2c3e50; }
+        
+        .btn-home { 
+            background: #1a2a6c; color: white; text-decoration: none; padding: 12px; 
+            border-radius: 8px; font-weight: bold; font-size: 15px; flex: 1; transition: 0.3s;
+        }
+        .btn-home:hover { background: #f39c12; }
+    </style>
+</head>
+<body>
+    <div class="ticket-card">
+        <div class="success-icon">✅</div>
+        <h2>Payment Successful!</h2>
+        <p class="success-msg">Your flight booking is confirmed.</p>
+        
+        <!-- ই-টিকিটের মূল অংশ -->
+        <div class="ticket-details">
+            <div class="detail-row">
+                <div>
+                    <div class="detail-label">Ticket ID / PNR</div>
+                    <!-- app.py থেকে আসা র‍্যান্ডম টিকিট নাম্বার -->
+                    <div class="detail-value" style="color: #e74c3c; font-size: 22px;">{{ ticket_no }}</div>
+                </div>
+                <div style="text-align: right;">
+                    <div class="detail-label">Status</div>
+                    <div class="detail-value" style="color: #2ecc71;">Confirmed</div>
+                </div>
+            </div>
+            <div class="detail-row">
+                <div>
+                    <div class="detail-label">Flight Operator</div>
+                    <!-- app.py থেকে আসা ফ্লাইটের নাম -->
+                    <div class="detail-value">{{ flight }}</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="buttons">
+            <!-- প্রিন্ট বাটনে ক্লিক করলে রিয়েল লাইফের মতো টিকিট সেভ/প্রিন্ট করার অপশন আসবে -->
+            <button class="btn-print" onclick="window.print()">🖨️ Print Ticket</button>
+            <a href="/" class="btn-home">🏠 Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>

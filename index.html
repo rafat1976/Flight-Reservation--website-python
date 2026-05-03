@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyLink - Premium Flight Reservation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f0f4f8;
+            color: #2c3e50;
+        }
+
+        /* Navigation Bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 80px;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: #1a2a6c;
+            text-decoration: none;
+        }
+
+        .logo span { color: #f39c12; }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            margin-left: 30px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: #f39c12; }
+
+        .auth-buttons a {
+            padding: 10px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-login { color: #1a2a6c; border: 2px solid #1a2a6c; margin-right: 15px; }
+        .btn-login:hover { background: #1a2a6c; color: white; }
+
+        .btn-reg { background: #f39c12; color: white; }
+        .btn-reg:hover { background: #e67e22; }
+
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            background: linear-gradient(rgba(26, 42, 108, 0.8), rgba(26, 42, 108, 0.8)), 
+                        url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero h1 { font-size: 50px; margin-bottom: 10px; letter-spacing: 2px; }
+        .hero p { font-size: 18px; opacity: 0.9; }
+
+        /* Main Menu Cards */
+        .menu-container {
+            max-width: 1000px;
+            margin: -80px auto 50px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .menu-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: 0.4s;
+            text-decoration: none;
+            color: inherit;
+            border-bottom: 5px solid transparent;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px);
+            border-bottom: 5px solid #f39c12;
+        }
+
+        .icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .menu-card h3 { font-size: 22px; margin-bottom: 15px; color: #1a2a6c; }
+        .menu-card p { font-size: 14px; color: #7f8c8d; line-height: 1.6; }
+
+        .btn-exit {
+            grid-column: 1 / -1;
+            background: #e74c3c;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="/" class="logo">Sky<span>Link</span></a>
+        <div class="nav-links">
+            {% if 'user' in session %}
+                <span style="font-weight: bold; color: #f39c12;">Welcome, {{ session['user'] }}</span>
+                <a href="/logout" style="color: #e74c3c;">Logout</a>
+            {% else %}
+                <div class="auth-buttons">
+                    <a href="/login" class="btn-login">Login</a>
+                    <a href="/register" class="btn-reg">Register</a>
+                </div>
+            {% endif %}
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1>Flight Reservation System</h1>
+        <p>Your Gateway to the World</p>
+    </div>
+
+    <div class="menu-container">
+        <!-- Search & Book Card -->
+        <a href="/search_ui" class="menu-card">
+            <span class="icon">✈️</span>
+            <h3>Search & Book Flight</h3>
+            <p>Find the best routes and book your tickets instantly with secure payment.</p>
+        </a>
+
+        <!-- Cancel Booking Card -->
+        <a href="/cancel_ticket" class="menu-card">
+            <span class="icon">❌</span>
+            <h3>Cancel Booking</h3>
+            <p>Need to change plans? Easily cancel your reservation using your ticket number.</p>
+        </a>
+
+        <!-- Status Card (Optional but looks good) -->
+        <a href="#" class="menu-card">
+            <span class="icon">📅</span>
+            <h3>Flight Status</h3>
+            <p>Check real-time updates of your scheduled flights and departures.</p>
+        </a>
+
+        <a href="/logout" class="btn-exit" style="text-align: center;">Exit System</a>
+    </div>
+
+</body>
+</html>

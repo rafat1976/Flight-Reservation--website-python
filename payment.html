@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment - SkyLink</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; background: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .payment-card { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 400px; text-align: center; }
+        h2 { color: #2ecc71; margin-bottom: 10px; }
+        .methods { display: flex; justify-content: space-between; margin: 25px 0; }
+        .methods label { background: #f9f9f9; padding: 10px 15px; border: 1px solid #ddd; border-radius: 8px; cursor: pointer; width: 30%; font-size: 14px; font-weight: bold; }
+        input[type="text"] { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box;}
+        .btn-pay { background: #f39c12; color: white; border: none; padding: 15px; width: 100%; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .btn-pay:hover { background: #e67e22; }
+    </style>
+</head>
+<body>
+    <div class="payment-card">
+        <h2>Secure Payment</h2>
+        <p style="color: #555; margin-bottom: 20px;">
+            Flight: <b>{{ flight }}</b><br>
+            Passenger: <b>{{ p_data.fname }}</b> ({{ p_data.p_class }})<br>
+            <span style="color: #e74c3c; font-weight: bold;">Seats: {{ p_data.seat }}</span>
+        </p>
+        
+        <!-- কনফার্ম বুকিং ফর্ম -->
+        <form action="/confirm_booking" method="POST">
+            <!-- হিডেন ডেটা যা ব্যাকএন্ডে পাঠানো হবে -->
+            <input type="hidden" name="flight" value="{{ flight }}">
+            <input type="hidden" name="seat" value="{{ p_data.seat }}"> 
+
+            <div class="methods">
+                <label><input type="radio" name="pay" required> bKash</label>
+                <label><input type="radio" name="pay"> Nagad</label>
+                <label><input type="radio" name="pay"> Card</label>
+            </div>
+
+            <input type="text" placeholder="Account / Card Number" required>
+            <input type="text" placeholder="PIN / CVV" required>
+            
+            <button type="submit" class="btn-pay">Pay & Confirm Ticket</button>
+        </form>
+    </div>
+</body>
+</html>

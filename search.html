@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Available Flights - SkyLink</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; background: #f4f7f6; padding: 40px; }
+        .header { text-align: center; margin-bottom: 40px; }
+        .header h1 { color: #1a2a6c; font-size: 32px; }
+        .header p { color: #7f8c8d; font-style: italic; }
+        
+        .table-container {
+            background: white; border-radius: 12px; overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+        table { width: 100%; border-collapse: collapse; }
+        th { background: #1a2a6c; color: white; padding: 18px; text-align: left; }
+        td { padding: 15px 18px; border-bottom: 1px solid #eee; color: #444; }
+        tr:hover { background: #f9f9f9; }
+        
+        .price { font-weight: bold; color: #2ecc71; }
+        .btn-book {
+            background: #f39c12; color: white; text-decoration: none;
+            padding: 8px 20px; border-radius: 5px; font-size: 14px; font-weight: bold;
+            display: inline-block;
+        }
+        .btn-book:hover { background: #e67e22; }
+        .footer-btns { margin-top: 30px; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Available Flights</h1>
+        <p>Select a flight and click 'Proceed to Booking'</p>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Flight Name</th>
+                    <th>Departure</th>
+                    <th>Arrival</th>
+                    <th>Source</th>
+                    <th>Destination</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if flights %}
+                    {% for f in flights %}
+                    <tr>
+                        <td style="font-weight: 600;">{{ f.FlightName }}</td>
+                        <td>{{ f.Dep_Time }}</td>
+                        <td>{{ f.Arr_Time }}</td>
+                        <td>{{ f.Source }}</td>
+                        <td>{{ f.Destination }}</td>
+                        
+                        <td class="price">{{ f.Price | string | replace(' BDT', '') | replace('BDT', '') }} BDT</td>
+                        
+                        <td><a href="/passenger_details/{{ f.FlightName }}" class="btn-book">Proceed to Booking</a></td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="7" style="text-align: center; color: #e74c3c; font-weight: bold; padding: 40px; font-size: 18px;">
+                            ✈️ Sorry! No flights are currently available for this route.
+                        </td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="footer-btns">
+        <a href="/" style="color: #1a2a6c; text-decoration: none; font-weight: bold;">← Back to Home</a>
+    </div>
+</body>
+</html>
